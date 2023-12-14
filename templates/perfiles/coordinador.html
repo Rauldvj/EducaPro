@@ -1,0 +1,57 @@
+<div class="flex flex-col">
+    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block w-full py-2 sm:px-2 lg:px-8">
+        <div class="overflow-hidden">
+          <table class="table-auto w-full  text-center text-sm font-light">
+
+    <thead>
+      <tr class=" border-b bg-gradient-to-tr from-sky-900 to-cyan-700">
+        <th class="text-start whitespacewrap  px-2 py-2 text-lg text-white ">Nombres y Apellidos</th>
+        <th class="text-start whitespacewrap  px-2 py-2 text-lg text-white ">Usuario</th>
+        <th class="text-start whitespacewrap  px-2 py-2 text-lg text-white ">Cargo</th>
+        <th class="text-start whitespacewrap  px-2 py-2 text-lg text-white ">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for user_profile in user_profiles %}
+        
+        {% if user_profile.groups == 'Funcionarios'%}
+          <tr class="gityellow">
+        {% elif user_profile.groups  == 'Coordinadores' %}
+          <tr class="table-secondary">
+        {% elif user_profile.groups  == 'Fonoaudiologos' %}
+          <tr class="table-success">
+        {% elif user_profile.groups  == 'Psicólogos' %}
+          <tr class="table-warning">
+        {% elif user_profile.groups  == 'Psicopedagógos' %}
+          <tr class="table-info">
+        {% elif user_profile.groups  == 'Terapeutas Ocupacionales' %}
+          <tr class="table-light">
+        {% elif user_profile.groups  == 'Fonoaudiologos' %}
+            
+        {% elif user_profile.groups  == 'Técnicos Diferenciales' %}
+          <tr class="table-danger">
+        {% elif user_profile.groups  == 'Técnicos Parvularios' %}
+            
+        {% endif %}
+        
+       
+      <tr>
+        <!-- <!- class="text-start whitespace-nowrap px-1 text-md"- debemos sacar el queryset para sacar el cargo --> 
+        <td class="text-start whitespace-nowrap px-2 py-2 text-md text-white ">{{ user_profile.user.get_full_name }}</td>
+        <td class="text-start whitespace-nowrap px-2 py-2 text-md text-white ">{{ user_profile.user.username }}</td>
+        <td class="text-start whitespace-nowrap px-2 py-2 text-md text-white ">{{ user_profile.groups | join:", " | capfirst }}</td> 
+        <td class="text-start whitespace-nowrap px-2 py-2 text-md text-white ">
+            <button type="button" class="bg-yellow-500 px-2 py-1 w-20">Info</button>
+            <button type="button" class="bg-lime-500   px-2 py-1 w-20">Editar</button>
+        </td>
+
+         
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+        </div>
+      </div>
+    </div>
+  </div>
